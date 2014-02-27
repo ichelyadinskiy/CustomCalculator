@@ -1,28 +1,8 @@
-﻿var calcController = {
-    _events: {
-        "click.digit": "onDigitClick",
-        "click.operator": "onOperatorClick"
-    },
+﻿var controller = {
     run: function () {
-        for (var ev in this._events) {
-            var eventName = ev.split('.')[0];
-            var selector = '.' + ev.split('.')[1];
-            var handler = this[this._events[ev]];
-            $('body').on(eventName, selector, handler.bind(this));
-        }
-        this.render();
-    },
-    onDigitClick: function (e) {
-        var pushed = e.target.innerHTML;
-        model.current = parseInt(model.current + '' + pushed);
-        this.render();
-    },
-    onOperatorClick: function (e) {
-        var operator = e.target.innerHTML;
-        if (operator == "+") {
-            model.memory = parseInt(model.memory) + parseInt(model.current);
-        }
-        model.current = 0;
+        observer.addListner(model, "digitClicked", "digitClick");
+        observer.addListner(model, "operatorClicked", "operatorClick");
+        
         this.render();
     },
     render: function () {
