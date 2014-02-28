@@ -60,5 +60,11 @@ namespace Calculator.Controllers
         {
             return calcService.Clear();
         }
+
+        [HttpGet]
+        public object GetClearAll()
+        {
+            return calcService.ClearAll();
+        }
     }
 }

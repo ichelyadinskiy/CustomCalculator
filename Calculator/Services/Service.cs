@@ -4,15 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Autofac;
+using System.Web.Mvc;
 
 namespace Calculator.Services
 {
     public class Service : IService
     {
         Repository _repository;
+        ContainerBuilder builder;
 
         public Service()
         {
+            //builder = new ContainerBuilder();
+            //builder.RegisterType<IService>().As<Service>().InstancePerLifetimeScope();
+            //builder.RegisterType<IRepository>().As<Repository>().InstancePerLifetimeScope();
+
             _repository = new Repository();
         }
 
@@ -54,6 +60,11 @@ namespace Calculator.Services
         public object Clear()
         {
             return _repository.Clear();
+        }
+
+        public object ClearAll()
+        {
+            return _repository.ClearAll();
         }
     }
 }

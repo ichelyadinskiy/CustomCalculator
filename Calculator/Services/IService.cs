@@ -17,5 +17,6 @@ namespace Calculator.Services
         object Division(Model model);
         object Multiplication(Model model);
         object Clear();
+        object ClearAll();
     }
 }

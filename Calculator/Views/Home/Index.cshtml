@@ -4,6 +4,7 @@
     <title>Calculator</title>
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/underscore.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/novaController.js"></script>
     <script type="text/javascript" src="~/Scripts/Custom/controller.js"></script>
     <script type="text/javascript" src="~/Scripts/Custom/model.js"></script>
     <script type="text/javascript" src="~/Scripts/Custom/observer.js"></script>
@@ -23,36 +24,37 @@
             <div>Memory: <%=model.digits.memory%></div>
             <div>Result: <%=model.digits.result%></div>
             <div>
-                <input type="text" value="<%=model.digits.current%>" readonly/>
+                <input type="text" value="<%=model.digits.current%>" readonly />
             </div>
         </div>
         <div class="calc">
             <div>
                 <%for(var i=7;i<10;i++) {%>
-                                   <button onclick="javascript: observer.trigger('digitClicked', this)" class="digit"><%=i%></button>
+                    <button class="digit"><%=i%></button>
                     <%}%>
             </div>
             <div>
                 <%for(var i=4;i<7;i++) {%>
-                                   <button onclick="javascript: observer.trigger('digitClicked', this)" class="digit"><%=i%></button>
+                    <button class="digit"><%=i%></button>
                     <%}%>
             </div>
             <div>
                 <%for(var i=1;i<4;i++) {%>
-                       <button onclick="javascript: observer.trigger('digitClicked', this)" class="digit"><%=i%></button>
+                    <button class="digit"><%=i%></button>
                     <%}%>
             </div>
             <div>
-                <button onclick="javascript: observer.trigger('operatorClicked', this)" class="operator">+</button>
-                <button onclick="javascript: observer.trigger('operatorClicked', this)" class="operator">-</button>
-                <button onclick="javascript: observer.trigger('operatorClicked', this)" class="operator">*</button>
-                <button onclick="javascript: observer.trigger('operatorClicked', this)" class="operator">/</button>
+                <button class="operator">+</button>
+                <button class="operator">-</button>
+                <button class="operator">*</button>
+                <button class="operator">/</button>
                 <br />
-                <button onclick="javascript: observer.trigger('operatorClicked', this)" class="operator">MS</button>
-                <button onclick="javascript: observer.trigger('operatorClicked', this)" class="operator">MR</button>
-                <button onclick="javascript: observer.trigger('operatorClicked', this)" class="operator">M+</button>
+                <button class="operator">MS</button>
+                <button class="operator">MR</button>
+                <button class="operator">M+</button>
                 <br />
-                <button onclick="javascript: observer.trigger('operatorClicked', this)" class="operator">C</button>
+                <button class="operator">C</button>
+                <button class="operator">CE</button>
             </div>
         </div>
     </div>

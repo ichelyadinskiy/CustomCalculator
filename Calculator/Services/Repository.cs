@@ -29,6 +29,7 @@ namespace Calculator.Services
 
         public object GetMemory()
         {
+            serverModel.Current = serverModel.Memory;
             return serverModel;
         }
 
@@ -60,6 +61,14 @@ namespace Calculator.Services
         public object Clear()
         {
             serverModel.Current = 0;
+            return serverModel;
+        }
+
+        public object ClearAll()
+        {
+            serverModel.Current = 0;
+            serverModel.Memory = 0;
+            serverModel.Result = 0;
             return serverModel;
         }
     }

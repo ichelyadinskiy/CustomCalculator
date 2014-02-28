@@ -22,8 +22,6 @@ namespace Calculator
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            var builder = new ContainerBuilder();
-            builder.RegisterType<Service>().As<Repository>().InstancePerLifetimeScope();
         }
     }
 }
