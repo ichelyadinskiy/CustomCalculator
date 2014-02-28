@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Calculator.Services
 {
-    public class Repository
+    public class Repository : IRepository
     {
         public static Model serverModel = new Model
         {

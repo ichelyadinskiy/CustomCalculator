@@ -9,6 +9,8 @@ using System.Web.SessionState;
 using System.Web.Http;
 using Calculator.Models;
 using Calculator.Controllers;
+using Autofac;
+using Calculator.Services;
 
 namespace Calculator
 {
@@ -20,6 +22,8 @@ namespace Calculator
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            var builder = new ContainerBuilder();
+            builder.RegisterType<Service>().As<Repository>().InstancePerLifetimeScope();
         }
     }
 }
