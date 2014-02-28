@@ -1,4 +1,5 @@
 ﻿using Calculator.Models;
+using Calculator.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,39 +11,54 @@ namespace Calculator.Controllers
 {
     public class ValuesController : ApiController
     {
-        public static Model serverModel = new Model
-        {
-            Current = 0,
-            Memory = 0,
-            Result = 0
-        };
+        Service calcService = new Service();
 
         [HttpPost]
         public object PostSum(Model model)
         {
-            serverModel.Result += model.Current;
-            return serverModel;
+            return calcService.AddResult(model);
         }
 
         [HttpPost]
         public object PostMemory(Model model)
         {
-            serverModel.Memory = model.Current;
-            return serverModel;
+            return calcService.ReplaceMemory(model);
         }
 
         [HttpGet]
         public object GetMemory()
         {
-            return serverModel;
+            return calcService.GetMemory();
         }
 
         [HttpPut]
         public object PutMemory(Model model)
         {
-            serverModel.Memory += model.Current;
-            serverModel.Current = 0;
-            return serverModel;
+            return calcService.AddToMemory(model);
+        }
+
+        [HttpPost]
+        public object PostMinus(Model model)
+        {
+            return calcService.MinusRes(model);
+        }
+
+        [HttpPost]
+        public object PostDivision(Model model)
+        {
+            return calcService.Division(model);
+        }
+
+        [HttpPost]
+        public object PostMultiplication(Model model)
+        {
+            return calcService.Multiplication(model);
+        }
+
+        [HttpGet]
+        public object GetClear()
+        {
+            return calcService.Clear();
         }
     }
 }

@@ -63,6 +63,65 @@
                 });
                 break;
             }
+            case "-": {
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/Values/PostMinus",
+                    data: model.digits,
+                    dataType: "json",
+                    success: function (answer) {
+                        model.digits.current = answer.Current;
+                        model.digits.memory = answer.Memory;
+                        model.digits.result = answer.Result;
+                        observer.trigger("modelChange");
+                    }
+                });
+                break;
+            }
+            case "/": {
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/Values/PostDivision",
+                    data: model.digits,
+                    dataType: "json",
+                    success: function (answer) {
+                        model.digits.current = answer.Current;
+                        model.digits.memory = answer.Memory;
+                        model.digits.result = answer.Result;
+                        observer.trigger("modelChange");
+                    }
+                });
+                break;
+            }
+            case "*": {
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/Values/PostMultiplication",
+                    data: model.digits,
+                    dataType: "json",
+                    success: function (answer) {
+                        model.digits.current = answer.Current;
+                        model.digits.memory = answer.Memory;
+                        model.digits.result = answer.Result;
+                        observer.trigger("modelChange");
+                    }
+                });
+                break;
+            }
+            case "C": {
+                $.ajax({
+                    type: 'GET',
+                    url: "/api/Values/GetClear",
+                    dataType: "json",
+                    success: function (answer) {
+                        model.digits.current = answer.Current;
+                        model.digits.memory = answer.Memory;
+                        model.digits.result = answer.Result;
+                        observer.trigger("modelChange");
+                    }
+                });
+                break;
+            }
         }
     },
     digitClick: function (e) {
