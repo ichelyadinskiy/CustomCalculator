@@ -10,7 +10,6 @@ using System.Web.Http;
 using Calculator.Models;
 using Calculator.Controllers;
 using Autofac;
-using Calculator.Services;
 
 namespace Calculator
 {

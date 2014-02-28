@@ -2,8 +2,7 @@
     digits: {
         current: 0,
         result: 0,
-        memory: 0,
-        sign: ''
+        memory: 0
     },
     digitClick: function(e){
         model.digits.current = parseInt(model.digits.current + "" + e);

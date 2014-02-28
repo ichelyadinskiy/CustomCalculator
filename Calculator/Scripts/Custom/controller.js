@@ -3,6 +3,10 @@
         "click.digit": "onDigitClick",
         "click.operator": "onOperatorClick"
     },
+    init: function() {
+        this.render();
+        observer.on(controller, "modelChange", "render");
+    },
     render: function () {
         var container = $('#calculatorContainer');
         var html = $('#calculatorTemplate').html();

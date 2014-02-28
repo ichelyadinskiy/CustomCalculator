@@ -1,113 +1,101 @@
 ﻿using Autofac;
-using Calculator.Models;
-using Calculator.Resolvers.Services;
+using Calculator.Resolvers.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Web;
 
-namespace Calculator.Controllers
+namespace Calculator.Resolvers.Services
 {
-    public class ValuesController : ApiController
+    public class Service : IService
     {
+        IContainer container;
         ContainerBuilder builder;
-        IContainer container { get; set; }
 
-        public ValuesController()
+        public Service()
         {
             builder = new ContainerBuilder();
-            builder.RegisterType<Service>().As<IService>();
+            builder.RegisterType<Repository>().As<IRepository>();
             container = builder.Build();
         }
 
-        [HttpPost]
-        public object PostSum(Model model)
+        public Models.Model AddRes(Models.Model model)
         {
             using (var scope = container.BeginLifetimeScope())
             {
-                var caller = scope.Resolve<IService>();
+                var caller = scope.Resolve<IRepository>();
                 return caller.AddRes(model);
             }
         }
 
-        [HttpPost]
-        public object PostMemory(Model model)
+        public Models.Model ReplaceMemory(Models.Model model)
         {
             using (var scope = container.BeginLifetimeScope())
             {
-                var caller = scope.Resolve<IService>();
+                var caller = scope.Resolve<IRepository>();
                 return caller.ReplaceMemory(model);
             }
         }
 
-        [HttpGet]
-        public object GetMemory()
+        public Models.Model GetMemory()
         {
             using (var scope = container.BeginLifetimeScope())
             {
-                var caller = scope.Resolve<IService>();
+                var caller = scope.Resolve<IRepository>();
                 return caller.GetMemory();
             }
         }
 
-        [HttpPut]
-        public object PutMemory(Model model)
+        public Models.Model AddToMemory(Models.Model model)
         {
             using (var scope = container.BeginLifetimeScope())
             {
-                var caller = scope.Resolve<IService>();
+                var caller = scope.Resolve<IRepository>();
                 return caller.AddToMemory(model);
             }
         }
 
-        [HttpPost]
-        public object PostMinus(Model model)
+        public Models.Model MinusRes(Models.Model model)
         {
             using (var scope = container.BeginLifetimeScope())
             {
-                var caller = scope.Resolve<IService>();
+                var caller = scope.Resolve<IRepository>();
                 return caller.MinusRes(model);
             }
         }
 
-        [HttpPost]
-        public object PostDivision(Model model)
+        public Models.Model DivisionRes(Models.Model model)
         {
             using (var scope = container.BeginLifetimeScope())
             {
-                var caller = scope.Resolve<IService>();
+                var caller = scope.Resolve<IRepository>();
                 return caller.DivisionRes(model);
             }
         }
 
-        [HttpPost]
-        public object PostMultiplication(Model model)
+        public Models.Model MultiRes(Models.Model model)
         {
             using (var scope = container.BeginLifetimeScope())
             {
-                var caller = scope.Resolve<IService>();
+                var caller = scope.Resolve<IRepository>();
                 return caller.MultiRes(model);
             }
         }
 
-        [HttpGet]
-        public object GetClear()
+        public Models.Model Clear()
         {
             using (var scope = container.BeginLifetimeScope())
             {
-                var caller = scope.Resolve<IService>();
+                var caller = scope.Resolve<IRepository>();
                 return caller.Clear();
             }
         }
 
-        [HttpGet]
-        public object GetClearAll()
+        public Models.Model ClearAll()
         {
             using (var scope = container.BeginLifetimeScope())
             {
-                var caller = scope.Resolve<IService>();
+                var caller = scope.Resolve<IRepository>();
                 return caller.ClearAll();
             }
         }

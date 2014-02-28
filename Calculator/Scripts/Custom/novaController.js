@@ -6,6 +6,6 @@
             var handler = this[this._events[ev]];
             $('body').on(eventName, selector, handler.bind(this));
         }
-        this.render();
+        this.init();
     }
 }
