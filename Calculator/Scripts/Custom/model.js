@@ -1,30 +1,73 @@
 ﻿var model = {
-    current: 0,
-    result: 0,
-    memory: 0,
+    digits: {
+        current: 0,
+        result: 0,
+        memory: 0
+    },
     operatorClick: function (e) {
         var operator = e.innerHTML;
-        if (operator == "+") {
-            $$.ajax({
-                type: 'POST',
-                url: "/api/Values/PostSum",
-                data: model,
-                dataType: "json",
-                success: function (answer) {
-                    model.current = answer.Current;
-                    model.memory = answer.Memory;
-                    model.result = answer.Result;
-                    observer.triggerEvent("modelChange");
-                }
-            });
+        switch (operator) {
+            case "+" : {
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/Values/PostSum",
+                    data: model.digits,
+                    dataType: "json",
+                    success: function (answer) {
+                        model.digits.current = answer.Current;
+                        model.digits.memory = answer.Memory;
+                        model.digits.result = answer.Result;
+                        observer.trigger("modelChange");
+                    }
+                });
+                break;
+            }
+            case "MS": {
+                $.ajax({
+                    type: 'POST',
+                    url: "/api/Values/PostMemory",
+                    data: model.digits,
+                    dataType: "json",
+                    success: function (answer) {
+                        model.digits.current = answer.Current;
+                        model.digits.memory = answer.Memory;
+                        model.digits.result = answer.Result;
+                        observer.trigger("modelChange");
+                    }
+                });
+                break;
+            }
+            case "MR": {
+                $.ajax({
+                    type: 'GET',
+                    url: "/api/Values/GetMemory",
+                    dataType: "json",
+                    success: function (answer) {
+                        model.digits.current = answer.Memory;
+                        observer.trigger("modelChange");
+                    }
+                });
+                break;
+            }
+            case "M+": {
+                $.ajax({
+                    type: 'PUT',
+                    url: "/api/Values/PutMemory",
+                    data: model.digits,
+                    dataType: "json",
+                    success: function (answer) {
+                        model.digits.memory = answer.Memory;
+                        model.digits.current = answer.Current;
+                        observer.trigger("modelChange");
+                    }
+                });
+                break;
+            }
         }
     },
     digitClick: function (e) {
-        $(document).ready(function () {
-            var pushed = e.innerHTML;
-            console.log(parseInt(model.current + '' + pushed));
-            model.current = parseInt(model.current + "" + pushed);
-            observer.triggerEvent("modelChange");
-        });
+        var pushed = e.innerHTML;
+        model.digits.current = parseInt(model.digits.current + "" + pushed);
+        observer.trigger("modelChange");
     },
 }

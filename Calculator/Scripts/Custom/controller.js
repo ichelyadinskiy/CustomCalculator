@@ -1,14 +1,14 @@
 ﻿var controller = {
     run: function () {
-        observer.addListner(model, "digitClicked", "digitClick");
-        observer.addListner(model, "operatorClicked", "operatorClick");
+        observer.on(model, "digitClicked", "digitClick");
+        observer.on(model, "operatorClicked", "operatorClick");
         
         this.render();
     },
     render: function () {
         var container = $('#calculatorContainer');
         var html = $('#calculatorTemplate').html();
-        var calculatorHtml = _.template(html, model);
+        var calculatorHtml = _.template(html, model.digits);
         container.html(calculatorHtml);
     },
 };

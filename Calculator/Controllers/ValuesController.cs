@@ -13,12 +13,35 @@ namespace Calculator.Controllers
         public static Model serverModel = new Model
         {
             Current = 0,
-            Result = 0,
-            Memory = 0
+            Memory = 0,
+            Result = 0
         };
-        public object PostSum(dynamic model)
+
+        [HttpPost]
+        public object PostSum(Model model)
         {
-            serverModel.Result += model.current;
+            serverModel.Result += model.Current;
+            return serverModel;
+        }
+
+        [HttpPost]
+        public object PostMemory(Model model)
+        {
+            serverModel.Memory = model.Current;
+            return serverModel;
+        }
+
+        [HttpGet]
+        public object GetMemory()
+        {
+            return serverModel;
+        }
+
+        [HttpPut]
+        public object PutMemory(Model model)
+        {
+            serverModel.Memory += model.Current;
+            serverModel.Current = 0;
             return serverModel;
         }
     }
