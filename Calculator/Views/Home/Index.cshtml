@@ -3,59 +3,23 @@
 <head>
     <title>Calculator</title>
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/underscore.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/Custom/novaController.js"></script>
-    <script type="text/javascript" src="~/Scripts/Custom/controller.js"></script>
-    <script type="text/javascript" src="~/Scripts/Custom/model.js"></script>
-    <script type="text/javascript" src="~/Scripts/Custom/observer.js"></script>
+    <script type="text/javascript" src="~/Scripts/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/BaseModel.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/ViewModel.js"></script>
 </head>
 <body>
-    <div id="calculatorContainer"></div>
-</body>
-<script type="text/javascript">
-    $(document).ready(function () {
-        controller.run();
-    })
-</script>
-<script id="calculatorTemplate" type="text/template">
     <div class="calculator">
         <div class="display">
-            <div>Memory: <%=model.digits.memory%></div>
-            <div>Result: <%=model.digits.result%></div>
-            <div>
-                <input type="text" value="<%=model.digits.current%>" readonly />
-            </div>
+            <p>Memory: <span data-bind="text: model.memory"></span></p>
+            <p>Result: <span data-bind="text: model.result"></span></p>
+            <p><input data-bind="value: model.current" readonly /></p>
         </div>
-        <div class="calc">
-            <div>
-                <%for(var i=7;i<10;i++) {%>
-                    <button class="digit"><%=i%></button>
-                    <%}%>
-            </div>
-            <div>
-                <%for(var i=4;i<7;i++) {%>
-                    <button class="digit"><%=i%></button>
-                    <%}%>
-            </div>
-            <div>
-                <%for(var i=1;i<4;i++) {%>
-                    <button class="digit"><%=i%></button>
-                    <%}%>
-            </div>
-            <div>
-                <button class="operator">+</button>
-                <button class="operator">-</button>
-                <button class="operator">*</button>
-                <button class="operator">/</button>
-                <br />
-                <button class="operator">MS</button>
-                <button class="operator">MR</button>
-                <button class="operator">M+</button>
-                <br />
-                <button class="operator">C</button>
-                <button class="operator">CE</button>
-            </div>
+        <div class="numbers" data-bind="foreach: model.numbers">
+            <input type="button" data-bind="value: $data.value, click: $root.addNumber" />
+        </div>
+        <div class="operators" data-bind="foreach: model.operators">
+            <input type="button" data-bind="value: $data.operator, click: $root.runCommand" />
         </div>
     </div>
-</script>
+</body>
 </html>

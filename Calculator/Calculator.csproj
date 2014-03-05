@@ -108,9 +108,11 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom\BaseModel.js" />
     <Content Include="Scripts\Custom\controller.js" />
     <Content Include="Scripts\Custom\novaController.js" />
     <Content Include="Scripts\Custom\observer.js" />
+    <Content Include="Scripts\Custom\ViewModel.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
